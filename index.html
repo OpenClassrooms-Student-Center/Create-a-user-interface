@@ -1,0 +1,122 @@
+<html>
+  <head>
+    <title>Books API Example</title>
+    <meta charset="utf-8" />
+    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <style type="text/css">
+    	body{
+    		font-family: 'Merriweather', serif;
+    	}
+    	#myBooks {
+    		width: 70%;
+    		margin: auto;
+    		background-color: lightgrey;
+    		padding: 20px;
+    	}
+    	h1{
+    		text-align: center;
+    	}
+    	img{
+    		width: 128px;
+    	}
+    </style>
+  </head>
+  <body>
+  	<div id="myBooks">
+  		<h1>Mes livres à lire</h1>
+  		<div id="addBook">
+  			<button>Ajouter un livre</button>
+  		</div>
+  		<hr>
+	  	<div id="searchBlock">
+	  		<form id="form">
+	  			<input type="search" name="search" id="search"><br>
+	  			<input type="submit" value="Rechercher">
+	  		</form>
+	  	</div>
+	    <div id="content"></div>
+	</div>
+    <script
+  src="https://code.jquery.com/jquery-3.4.0.min.js"
+  integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
+  crossorigin="anonymous"></script>
+    <script>
+    	$("#addBook").hide();
+    	$("#searchBlock").hide();
+	  	function handleResponse(response) {
+			console.log(response);
+			for (var i = 0; i < response.items.length; i++) {
+				var item = response.items[i];
+				var title = item.volumeInfo.title;
+				var image = getImage(item.volumeInfo.imageLinks);
+				title = "<h2>"+ title +"</h2>";
+				image = '<img src="'+ image +'" alt="title">';
+				var remove = '<i class="fas fa-trash-alt"></i>';
+				var br = '<br><br><br>';
+				var div = '<div class="book">' + title + image + br + remove +'</div>';
+				$('#content').append(div);
+				//$('.book').hide();
+			}
+			//showBooks();
+			deleteBook();
+	    }
+
+	    function getImage(image)
+	    {
+	    	console.log(image);
+	    	if(image == undefined) {
+	    		console.log('test');
+	    		image = 'images/unavailable.png';
+	    		return image;
+	    	} else {
+	    		return image.smallThumbnail;
+	    	}
+	    }
+
+	    function showBooks()
+	    {
+	    	$('.book').each(function(index) {
+				$(this).delay(1000*index).fadeIn(800);
+			});
+	    }
+
+	    function search()
+	    {
+	    	$('#form').submit(function(e) {
+	    		e.preventDefault();
+	    		console.log('formulaire soumis');
+	    		var search = $("#search").val();
+	    		console.log(search);
+	    		var url = "https://www.googleapis.com/books/v1/volumes?q=1984+intitle:1984+inauthor:Orwell&filter=partial&langRestrict=fr&printType=books&projection=lite";
+	    		console.log(url);
+	    		$.ajax({
+		            type: "GET",
+		            url: url,
+		            dataType: 'json',
+		            success: function(data) {
+		                console.log(data);
+		            },
+		            error: function(errorMessage) {
+		                 console.log("damnn");
+		            }
+		        });
+	    	});
+	    }
+	    search();
+	    function deleteBook()
+	    {
+	    	$(".fa-trash-alt").click(function(){
+	    		var confirmation = confirm("Êtes-vous certain de vouloir supprimer ce livre ?");
+	    		if(confirmation) {
+	    			var book = $(this).parent();
+		    		book.fadeOut(800, function() {
+		    			book.remove();	
+		    		});	
+	    		}
+	    	});
+	    }
+    </script>
+    <script src="https://www.googleapis.com/books/v1/volumes?q=harry+potter&callback=handleResponse"></script>
+  </body>
+</html>
