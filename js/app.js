@@ -53,6 +53,7 @@ $( document ).ready(function() {
                 dataType: 'json',
                 success: function(data) {
                     console.log(data);
+                    showResults(data);
                 },
                 error: function(errorMessage) {
                     console.log("damnn");
@@ -73,6 +74,15 @@ $( document ).ready(function() {
             }
         });
     }
+    function addBookBlock(){
+        var block = '<div id="addBookBlock">' +
+            '<button id="addBook" class="btn">Ajouter un livre</button>' +
+            '</div>';
+        $('h1').after(block);
+        addBook();
+
+    }
+
     function addCancelButton()
 	{
 		var cancel = '<button id="cancel" class="btn">Annuler</button>';
@@ -85,15 +95,28 @@ $( document ).ready(function() {
 		var block = '<div id="searchBlock">' +
 			'<form id="form">' +
             '<label>Titre du livre</label><br>' +
-            '<input type="text" name="search" id="search"><br>' +
+            '<input type="text" name="title" id="title" class="input"><br>' +
+            '<label>Auteur</label><br>' +
+            '<input type="text" name="author" id="author" class="author"><br>' +
             '<button class="btn">Rechercher</button>' +
-			cancel +
             '</form>' +
-            '</div>';
-		console.log(block);
+            cancel +
+        '</div>';
+		//console.log(block);
 		$('#addBookBlock').remove();
 		$('h1').after(block);
+		removeSearchBlock();
+		search();
 	}
+
+	function removeSearchBlock()
+    {
+        $('#cancel').click(function () {
+            $('#searchBlock').remove();
+            $("#results").remove();
+            addBookBlock();
+        })
+    }
 
     function addBook()
 	{
@@ -104,5 +127,36 @@ $( document ).ready(function() {
 			//Remove addBook block
         })
 	}
-	addBook();
+    addBookBlock();
+    function showResults(data)
+    {
+        console.log(data.items);
+        var resultBlock = '<div id="results"></div>';
+        $('#searchBlock').after(resultBlock);
+        $.each(data.items, function (index, value) {
+            console.log(value);
+            var block = '<div class="book">' +
+                '<h2>Titre: '+ value.volumeInfo.title +'</h2>' +
+                '<p>Auteur: '+ value.volumeInfo.authors[0] +'</p>' +
+                '<i class="fas fa-bookmark"></i>' +
+                '<img src="'+ value.volumeInfo.imageLinks.smallThumbnail+'" alt="'+ value.volumeInfo.title+'">'
+            '</div>';
+            $("#results").append(block);
+        });
+        addBookInMyList();
+    }
+    function addBookInMyList() {
+        $('.fa-bookmark').click(function(){
+            var parent = $(this).parent();
+            console.log($(parent).children());
+            $.each($(parent).children(), function (index, value) {
+                console.log(value);
+                if($(value).hasClass('fa-bookmark')) {
+                    value = $(this.replaceWith('<i class="fas fa-trash-alt"></i>'));
+                }
+                value
+            });
+            $('#content').append('<div class="my-book">'+ parent + '</div>');
+        });
+    }
 });

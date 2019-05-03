@@ -21,3 +21,7 @@ img{
     border-radius: 5px;
     font-weight: bold;
 }
+.book {
+    background-color: aquamarine;
+    padding: 10px 20px;
+}
