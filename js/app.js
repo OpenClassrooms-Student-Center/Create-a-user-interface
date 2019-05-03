@@ -113,7 +113,9 @@ $( document ).ready(function() {
     {
         $('#cancel').click(function () {
             $('#searchBlock').remove();
-            $("#results").remove();
+            $("#results").fadeOut(800, function () {
+                $("#results").remove();
+            });
             addBookBlock();
         })
     }
@@ -149,7 +151,17 @@ $( document ).ready(function() {
         $('.fa-bookmark').click(function(){
             var parent = $(this).parent().html();
             $('#content').append('<div class="my-book">'+ parent + '</div>');
-            console.log($(parent).children());
+            $('.my-book .fa-bookmark').replaceWith('<i class="fas fa-trash-alt"></i>');
+            removeBookInMyList();
+        });
+    }
+    function removeBookInMyList() {
+        $('.fa-trash-alt').click(function(){
+            console.log($(this).parent());
+            var element = $(this).parent()
+            $(element).fadeOut(800, function () {
+                $(element).remove();
+            });
         });
     }
 });
