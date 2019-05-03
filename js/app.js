@@ -132,17 +132,16 @@ $( document ).ready(function() {
     addBookBlock();
     function showResults(data)
     {
-        console.log(data.items);
-        var resultBlock = '<div id="results"></div>';
+        var resultBlock = '<div id="results"><h2>Résultats de la recherche</h2></div>';
         $('#searchBlock').after(resultBlock);
         $.each(data.items, function (index, value) {
             console.log(value);
             var block = '<div class="book">' +
-                '<h2>Titre: '+ value.volumeInfo.title +'</h2>' +
+                '<h3>Titre: '+ value.volumeInfo.title +'</h3>' +
                 '<p>Auteur: '+ value.volumeInfo.authors[0] +'</p>' +
                 '<i class="fas fa-bookmark"></i>' +
-                '<img src="'+ value.volumeInfo.imageLinks.smallThumbnail+'" alt="'+ value.volumeInfo.title+'">'
-            '</div>';
+                '<img src="'+ value.volumeInfo.imageLinks.smallThumbnail+'" alt="'+ value.volumeInfo.title+'">' +
+            '</div><hr>';
             $("#results").append(block);
         });
         addBookInMyList();

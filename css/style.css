@@ -14,14 +14,20 @@ img{
     width: 128px;
 }
 .btn {
-    padding: 10px 20px;
+    margin: 10px 20px;
     font-size: 14px;
     background-color: #00b89c;
     color: #fff;
     border-radius: 5px;
     font-weight: bold;
 }
+#results{
+    background-color: red;
+}
+#results h2 {
+    text-align: center;
+}
 .book {
     background-color: aquamarine;
-    padding: 10px 20px;
+    margin: 20px;
 }
