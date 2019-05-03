@@ -147,16 +147,9 @@ $( document ).ready(function() {
     }
     function addBookInMyList() {
         $('.fa-bookmark').click(function(){
-            var parent = $(this).parent();
-            console.log($(parent).children());
-            $.each($(parent).children(), function (index, value) {
-                console.log(value);
-                if($(value).hasClass('fa-bookmark')) {
-                    value = $(this.replaceWith('<i class="fas fa-trash-alt"></i>'));
-                }
-                value
-            });
+            var parent = $(this).parent().html();
             $('#content').append('<div class="my-book">'+ parent + '</div>');
+            console.log($(parent).children());
         });
     }
 });
