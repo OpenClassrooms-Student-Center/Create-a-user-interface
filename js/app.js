@@ -61,7 +61,7 @@ $( document ).ready(function() {
             });
         });
     }
-    search();
+    //search();
     function deleteBook()
     {
         $(".fa-trash-alt").click(function(){
@@ -132,6 +132,7 @@ $( document ).ready(function() {
     addBookBlock();
     function showResults(data)
     {
+        $("#results").remove();
         var resultBlock = '<div id="results"><h2>Résultats de la recherche</h2></div>';
         $('#searchBlock').after(resultBlock);
         $.each(data.items, function (index, value) {
@@ -149,7 +150,7 @@ $( document ).ready(function() {
     function addBookInMyList() {
         $('.fa-bookmark').click(function(){
             var parent = $(this).parent().html();
-            $('#content').append('<div class="my-book">'+ parent + '</div>');
+            $('#content').append('<div class="my-book">'+ parent + '</div><hr>');
             $('.my-book .fa-bookmark').replaceWith('<i class="fas fa-trash-alt"></i>');
             removeBookInMyList();
         });

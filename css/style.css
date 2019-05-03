@@ -14,7 +14,7 @@ img{
     width: 128px;
 }
 .btn {
-    margin: 10px 20px;
+    margin: 10px 20px 10px 0;
     font-size: 14px;
     background-color: #00b89c;
     color: #fff;
