@@ -96,9 +96,9 @@ $( document ).ready(function() {
 		var block = '<div id="searchBlock">' +
 			'<form id="form">' +
             '<label>Titre du livre</label><br>' +
-            '<input type="text" name="title" id="title" class="input"><br>' +
+            '<input type="text" name="title" id="title" class="input" required><br>' +
             '<label>Auteur</label><br>' +
-            '<input type="text" name="author" id="author" class="author"><br>' +
+            '<input type="text" name="author" id="author" class="author" required><br>' +
             '<button class="btn">Rechercher</button>' +
             '</form>' +
             cancel +
@@ -139,10 +139,15 @@ $( document ).ready(function() {
         $.each(data.items, function (index, value) {
             console.log(value);
             var block = '<div class="book">' +
+                '<div class="book-top">' +
                 '<h3>Titre: '+ value.volumeInfo.title +'</h3>' +
                 '<p>Auteur: '+ value.volumeInfo.authors[0] +'</p>' +
                 '<i class="fas fa-bookmark"></i>' +
+                '</div>' +
+                '<div class="book-bottom">' +
+                '<p>Description: '+ value.volumeInfo.description.slice(0, 150) +'...</p>' +
                 '<img src="'+ value.volumeInfo.imageLinks.smallThumbnail+'" alt="'+ value.volumeInfo.title+'">' +
+                '</div>' +
             '</div><hr>';
             $("#results").append(block);
         });
@@ -170,7 +175,7 @@ $( document ).ready(function() {
             });
         });
 
-        sessionStorage.clear();
+        //sessionStorage.removeItem();
     }
     function addInSessionStorage() {
         //Vider la session
