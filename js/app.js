@@ -169,6 +169,8 @@ $( document ).ready(function() {
                 $(element).remove();
             });
         });
+
+        sessionStorage.clear();
     }
     function addInSessionStorage() {
         //Vider la session
@@ -196,4 +198,5 @@ $( document ).ready(function() {
     }
     getInSessionStorage();
     removeBookInMyList();
+    //Supprimer le livre de la session pour ne pas qu'il s'affiche au rechargement de la page
 });
