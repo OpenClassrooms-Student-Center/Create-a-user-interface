@@ -150,10 +150,15 @@ $( document ).ready(function() {
     function addBookInMyList() {
         $('.fa-bookmark').click(function(){
             var parent = $(this).parent().html();
-            $('#content').append('<div class="my-book">'+ parent + '</div><hr>');
-            $('.my-book .fa-bookmark').replaceWith('<i class="fas fa-trash-alt"></i>');
+            $('#content').append('<div class="my-book">'+ parent + '</div>');
+            replaceBookMark();
+            console.log(parent);
             removeBookInMyList();
+            addInSessionStorage();
         });
+    }
+    function replaceBookMark(){
+        $('.my-book .fa-bookmark').replaceWith('<i class="fas fa-trash-alt"></i>');
     }
     function removeBookInMyList() {
         $('.fa-trash-alt').click(function(){
@@ -164,4 +169,29 @@ $( document ).ready(function() {
             });
         });
     }
+    function addInSessionStorage() {
+        //Vider la session
+        sessionStorage.clear();
+        console.log(sessionStorage);
+        //Récupérer les éléments
+        var children = $('#content').children();
+        console.log(children);
+        //Enregistrer ceux-ci dans la session
+        $.each(children, function (index, value) {
+            console.log(index);
+            console.log(value);
+            sessionStorage.setItem(index, $(value).html());
+            console.log(sessionStorage);
+        });
+        //sessionStorage.setItem('key', 'value');
+    }
+    function getInSessionStorage() {
+        console.log(sessionStorage.getItem(0));
+        console.log(sessionStorage.length);
+        for(var i = 0; i < sessionStorage.length; i++) {
+            console.log(sessionStorage[i]);
+            $("#content").append('<div class="my-book">'+ sessionStorage[i] + '</div>');
+        }
+    }
+    getInSessionStorage();
 });
