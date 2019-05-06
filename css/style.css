@@ -30,4 +30,10 @@ img{
 .book {
     background-color: aquamarine;
     margin: 20px;
+    padding: 10px;
+}
+.my-book {
+    background-color: aquamarine;
+    margin: 20px;
+    padding: 10px;
 }

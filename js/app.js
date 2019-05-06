@@ -43,6 +43,7 @@ $( document ).ready(function() {
         $('#form').submit(function(e) {
             e.preventDefault();
             console.log('formulaire soumis');
+            //Récupérer les champs saisis dans le formulaire
             var search = $("#search").val();
             console.log(search);
             var url = "https://www.googleapis.com/books/v1/volumes?q=1984+intitle:1984+inauthor:Orwell&filter=partial&langRestrict=fr&printType=books&projection=lite";
@@ -194,4 +195,5 @@ $( document ).ready(function() {
         }
     }
     getInSessionStorage();
+    removeBookInMyList();
 });
