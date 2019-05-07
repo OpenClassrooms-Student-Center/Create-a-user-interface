@@ -139,15 +139,10 @@ $( document ).ready(function() {
         $.each(data.items, function (index, value) {
             console.log(value);
             var block = '<div class="book">' +
-                '<div class="book-top">' +
                 '<h3>Titre: '+ value.volumeInfo.title +'</h3>' +
                 '<p>Auteur: '+ value.volumeInfo.authors[0] +'</p>' +
                 '<i class="fas fa-bookmark"></i>' +
-                '</div>' +
-                '<div class="book-bottom">' +
-                '<p>Description: '+ value.volumeInfo.description.slice(0, 150) +'...</p>' +
                 '<img src="'+ value.volumeInfo.imageLinks.smallThumbnail+'" alt="'+ value.volumeInfo.title+'">' +
-                '</div>' +
             '</div><hr>';
             $("#results").append(block);
         });
