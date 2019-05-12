@@ -51,12 +51,17 @@ $( document ).ready(function() {
             var search = $("#search").val();
             console.log(search);
 
-            var titleWithPlus = title.replace(/\s/gi, "+");
-            console.log(titleWithPlus);
+            var titleWithPlusAndQuotes = '"'+title.replace(/\s/gi, "+")+ '"';
+            console.log(titleWithPlusAndQuotes);
+
+            var authorWithPlusAndQuotes = '"'+author.replace(/\s/gi, "+")+ '"';
+            console.log(authorWithPlusAndQuotes);
 
             //var url = "https://www.googleapis.com/books/v1/volumes?q=1984+intitle:1984+inauthor:Orwell&filter=partial&langRestrict=fr&printType=books&projection=lite";
             //var url = 'https://www.googleapis.com/books/v1/volumes?q="'+ titleWithPlus +'"+intitle:'+ titleWithPlus +'+inauthor:Orwell&filter=partial&langRestrict=fr&printType=books&projection=lite';
-            var url = 'https://www.googleapis.com/books/v1/volumes?q="la+ferme+des+animaux"+intitle:"la+ferme+des+animaux"+inauthor:Orwell'
+            //var url2 = 'https://www.googleapis.com/books/v1/volumes?q="la+ferme+des+animaux"+intitle:"la+ferme+des+animaux"+inauthor:Orwell'
+            //https://www.googleapis.com/books/v1/volumes?q=%22la+ferme+des+animaux%22+intitle:%22la+ferme+des+animaux%22+inauthor:Orwell&filter=full&langRestrict=fr&printType=books&projection=lite
+            var url = 'https://www.googleapis.com/books/v1/volumes?q='+titleWithPlusAndQuotes+'+'+authorWithPlusAndQuotes +'+intitle:'+ titleWithPlusAndQuotes +'+inauthor:'+ authorWithPlusAndQuotes +'&langRestrict=fr&printType=books&projection=lite';
 
             console.log(url);
             $.ajax({
