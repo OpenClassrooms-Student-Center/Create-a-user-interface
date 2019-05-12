@@ -1,22 +1,4 @@
 $( document ).ready(function() {
-    function handleResponse(response) {
-        console.log(response);
-        for (var i = 0; i < response.items.length; i++) {
-            var item = response.items[i];
-            var title = item.volumeInfo.title;
-            var image = getImage(item.volumeInfo.imageLinks);
-            title = "<h2>"+ title +"</h2>";
-            image = '<img src="'+ image +'" alt="title">';
-            var remove = '<i class="fas fa-trash-alt"></i>';
-            var br = '<br><br><br>';
-            var div = '<div class="book">' + title + image + br + remove +'</div>';
-            $('#content').append(div);
-            $('.book').hide();
-        }
-        showBooks();
-        deleteBook();
-    }
-
     function getImage(image)
     {
         console.log(image);
