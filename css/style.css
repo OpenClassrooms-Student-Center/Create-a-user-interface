@@ -2,16 +2,29 @@ body{
     font-family: 'Merriweather', serif;
 }
 #myBooks {
-    width: 70%;
     margin: auto;
-    background-color: lightgrey;
     padding: 20px;
 }
 h1{
     text-align: center;
+    background-color: #e0e0e0;
+    border-radius: 5px;
+    border: none;
+    padding: 10px 30px;
+    font-size: 20px;
+}
+.h2NewBook{
+    font-size: 18px;
+    text-align: center;
 }
 img{
     width: 128px;
+}
+input {
+    width: 100%;
+    border: solid 1px black;
+    margin: 5px 0;
+    padding: 5px 0;
 }
 .btn {
     margin: 10px 20px 10px 0;
@@ -21,6 +34,9 @@ img{
     color: #fff;
     border-radius: 5px;
     border: none;
+}
+#cancel {
+    background-color: #f44e42;
 }
 #results{
     background-color: red;
@@ -37,4 +53,11 @@ img{
     background-color: aquamarine;
     margin: 20px;
     padding: 10px;
+}
+#addBookBlock {
+    text-align: center;
+}
+#searchBlock .btn {
+    width: 150px;
+    margin: 10px 25%;
 }

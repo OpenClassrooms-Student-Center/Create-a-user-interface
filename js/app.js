@@ -95,7 +95,7 @@ $( document ).ready(function() {
         var block = '<div id="addBookBlock">' +
             '<button id="addBook" class="btn">Ajouter un livre</button>' +
             '</div>';
-        $('h1').after(block);
+        $('.h2NewBook').after(block);
         addBook();
 
     }
@@ -121,7 +121,7 @@ $( document ).ready(function() {
         '</div>';
 		//console.log(block);
 		$('#addBookBlock').remove();
-		$('h1').after(block);
+		$('.h2NewBook').after(block);
 		removeSearchBlock();
 		search();
 	}
