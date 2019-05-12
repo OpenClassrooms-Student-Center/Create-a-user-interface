@@ -31,6 +31,15 @@ $( document ).ready(function() {
         }
     }
 
+    function getDescription(description) {
+        console.log('Description: '+ description);
+        if(description == undefined) {
+            return 'Information manquante';
+        } else {
+            return description;
+        }
+    }
+
     function showBooks()
     {
         $('.book').each(function(index) {
@@ -152,17 +161,25 @@ $( document ).ready(function() {
         $("#results").remove();
         var resultBlock = '<div id="results"><h2>Résultats de la recherche</h2></div>';
         $('hr').after(resultBlock);
-        $.each(data.items, function (index, value) {
-            console.log(value);
-            var block = '<div class="book" id="'+ value.id +'">' +
-                '<h3>Titre: '+ value.volumeInfo.title +'</h3>' +
-                '<p>Auteur: '+ value.volumeInfo.authors[0] +'</p>' +
-                '<i class="fas fa-bookmark"></i>' +
-                '<img src="'+ getImage(value.volumeInfo.imageLinks)+'" alt="'+ value.volumeInfo.title+'">' +
-            '</div><hr>';
-            $("#results").append(block);
-        });
-        addBookInMyList();
+        console.log(data.totalItems);
+        if(data.totalItems > 0) {
+            $.each(data.items, function (index, value) {
+                console.log(value);
+                var block = '<div class="book">' +
+                    '<h3>Titre: '+ value.volumeInfo.title +'</h3>' +
+                    '<p class="id">Id: '+ value.id +'</p>' +
+                    '<p>Auteur: '+ value.volumeInfo.authors[0] +'</p>' +
+                    '<p>Description: '+ getDescription(value.volumeInfo.description) +'</p>' +
+                    '<i class="fas fa-bookmark"></i>' +
+                    '<img src="'+ getImage(value.volumeInfo.imageLinks)+'" alt="'+ value.volumeInfo.title+'">' +
+                    '</div><hr>';
+                $("#results").append(block);
+            });
+            addBookInMyList();
+        }
+        else {
+            $("#results").append('<p class="center">Aucun livre trouvé</p>');
+        }
     }
     function addBookInMyList() {
         $('.fa-bookmark').click(function(){

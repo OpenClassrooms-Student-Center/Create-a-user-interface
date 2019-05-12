@@ -24,7 +24,7 @@ input {
     width: 100%;
     border: solid 1px black;
     margin: 5px 0;
-    padding: 5px 0;
+    padding: 5px;
 }
 .btn {
     margin: 10px 20px 10px 0;
@@ -38,11 +38,17 @@ input {
 #cancel {
     background-color: #f44e42;
 }
+.center {
+    text-align: center;
+}
 .book {
     background-color: #e0e0e0;
     border: solid 1px black;
     margin: 20px 0;
     padding: 10px;
+}
+.id {
+    font-style: italic;
 }
 .my-book {
     background-color: aquamarine;
