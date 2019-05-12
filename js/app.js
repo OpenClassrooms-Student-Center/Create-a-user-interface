@@ -140,11 +140,26 @@ $( document ).ready(function() {
     function addBookInMyList() {
         $('.fa-bookmark').click(function(){
             var id = $(this).closest('.book').attr('id');
-            var parent = $(this).closest('.book').html();
-            $('#content').append('<div class="my-book">'+ parent + '</div>');
-            replaceBookMark();
-            removeBookInMyList();
-            addInSessionStorage(id, parent);
+            console.log(id);
+            var myBookId = $('.my-book').attr('id');
+            console.log(myBookId);
+            var value = 0;
+            $('.my-book').each(function () {
+                console.log($(this).attr('id'));
+                if(id === $(this).attr('id')) {
+                    alert('Ce livre a déjà été ajouté à votre liste');
+                    value = 1;
+                    return false;
+                }
+            });
+            console.log(value);
+            if(value == 0) {
+                var parent = $(this).closest('.book').html();
+                $('#content').append('<div class="my-book" id="'+ id +'">'+ parent + '</div>');
+                replaceBookMark();
+                removeBookInMyList();
+                addInSessionStorage(id, parent);
+            }
         });
     }
     function replaceBookMark(){
