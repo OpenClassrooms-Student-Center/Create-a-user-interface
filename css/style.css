@@ -15,11 +15,12 @@ img{
 }
 .btn {
     margin: 10px 20px 10px 0;
-    font-size: 14px;
-    background-color: #00b89c;
+    padding: 10px 30px;
+    font-size: 16px;
+    background-color: #009688;
     color: #fff;
     border-radius: 5px;
-    font-weight: bold;
+    border: none;
 }
 #results{
     background-color: red;

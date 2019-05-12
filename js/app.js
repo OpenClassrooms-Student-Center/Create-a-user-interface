@@ -154,7 +154,7 @@ $( document ).ready(function() {
         $('#searchBlock').after(resultBlock);
         $.each(data.items, function (index, value) {
             console.log(value);
-            var block = '<div class="book">' +
+            var block = '<div class="book" id="'+ value.id +'">' +
                 '<h3>Titre: '+ value.volumeInfo.title +'</h3>' +
                 '<p>Auteur: '+ value.volumeInfo.authors[0] +'</p>' +
                 '<i class="fas fa-bookmark"></i>' +
