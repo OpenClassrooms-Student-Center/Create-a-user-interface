@@ -1,9 +1,7 @@
 $( document ).ready(function() {
     function getImage(image)
     {
-        console.log(image);
         if(image == undefined) {
-            console.log('test');
             image = 'images/unavailable.png';
             return image;
         } else {
@@ -12,7 +10,6 @@ $( document ).ready(function() {
     }
 
     function getDescription(description) {
-        console.log('Description: '+ description);
         if(description == undefined) {
             return 'Information manquante';
         } else {
@@ -20,45 +17,21 @@ $( document ).ready(function() {
         }
     }
 
-    function showBooks()
-    {
-        $('.book').each(function(index) {
-            $(this).delay(1000*index).fadeIn(800);
-        });
-    }
-
     function search()
     {
         $('#form').submit(function(e) {
             e.preventDefault();
-            console.log('formulaire soumis');
-            //Récupérer les champs saisis dans le formulaire
             var title = $("#title").val();
-            console.log(title);
             var author = $("#author").val();
-            console.log(author);
-            var search = $("#search").val();
-            console.log(search);
-
             var titleWithPlusAndQuotes = '"'+title.replace(/\s/gi, "+")+ '"';
-            console.log(titleWithPlusAndQuotes);
-
             var authorWithPlusAndQuotes = '"'+author.replace(/\s/gi, "+")+ '"';
-            console.log(authorWithPlusAndQuotes);
-
-            //var url = "https://www.googleapis.com/books/v1/volumes?q=1984+intitle:1984+inauthor:Orwell&filter=partial&langRestrict=fr&printType=books&projection=lite";
-            //var url = 'https://www.googleapis.com/books/v1/volumes?q="'+ titleWithPlus +'"+intitle:'+ titleWithPlus +'+inauthor:Orwell&filter=partial&langRestrict=fr&printType=books&projection=lite';
-            //var url2 = 'https://www.googleapis.com/books/v1/volumes?q="la+ferme+des+animaux"+intitle:"la+ferme+des+animaux"+inauthor:Orwell'
-            //https://www.googleapis.com/books/v1/volumes?q=%22la+ferme+des+animaux%22+intitle:%22la+ferme+des+animaux%22+inauthor:Orwell&filter=full&langRestrict=fr&printType=books&projection=lite
             var url = 'https://www.googleapis.com/books/v1/volumes?q='+titleWithPlusAndQuotes+'+'+authorWithPlusAndQuotes +'+intitle:'+ titleWithPlusAndQuotes +'+inauthor:'+ authorWithPlusAndQuotes +'&langRestrict=fr&printType=books&projection=lite';
 
-            console.log(url);
             $.ajax({
                 type: "GET",
                 url: url,
                 dataType: 'json',
                 success: function(data) {
-                    console.log(data);
                     showResults(data);
                 },
                 error: function(errorMessage) {
@@ -129,10 +102,7 @@ $( document ).ready(function() {
     function addBook()
 	{
 		$('#addBook').click(function () {
-			console.log('clicked');
-			//Create Search Block
 			addSearchBlock();
-			//Remove addBook block
         })
 	}
     addBookBlock();
@@ -141,10 +111,8 @@ $( document ).ready(function() {
         $("#results").remove();
         var resultBlock = '<div id="results"><h2>Résultats de la recherche</h2></div>';
         $('hr').after(resultBlock);
-        console.log(data.totalItems);
         if(data.totalItems > 0) {
             $.each(data.items, function (index, value) {
-                console.log(value);
                 var block = '<div class="book">' +
                     '<div class="book-top">' +
                     '<div class="book-top-left">' +
@@ -174,7 +142,6 @@ $( document ).ready(function() {
             var parent = $(this).parent().html();
             $('#content').append('<div class="my-book">'+ parent + '</div>');
             replaceBookMark();
-            console.log(parent);
             removeBookInMyList();
             addInSessionStorage();
         });
@@ -184,7 +151,6 @@ $( document ).ready(function() {
     }
     function removeBookInMyList() {
         $('.fa-trash-alt').click(function(){
-            console.log($(this).parent());
             var element = $(this).parent()
             $(element).fadeOut(800, function () {
                 $(element).remove();
@@ -196,16 +162,11 @@ $( document ).ready(function() {
     function addInSessionStorage() {
         //Vider la session
         sessionStorage.clear();
-        console.log(sessionStorage);
         //Récupérer les éléments
         var children = $('#content').children();
-        console.log(children);
         //Enregistrer ceux-ci dans la session
         $.each(children, function (index, value) {
-            console.log(index);
-            console.log(value);
             sessionStorage.setItem(index, $(value).html());
-            console.log(sessionStorage);
         });
         //sessionStorage.setItem('key', 'value');
     }
@@ -213,7 +174,6 @@ $( document ).ready(function() {
         console.log(sessionStorage.getItem(0));
         console.log(sessionStorage.length);
         for(var i = 0; i < sessionStorage.length; i++) {
-            console.log(sessionStorage[i]);
             $("#content").append('<div class="my-book">'+ sessionStorage[i] + '</div>');
         }
     }
