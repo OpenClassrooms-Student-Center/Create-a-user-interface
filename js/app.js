@@ -36,7 +36,7 @@ $( document ).ready(function() {
         if(description == undefined) {
             return 'Information manquante';
         } else {
-            return description;
+            return description.slice(0, 200) +'...';
         }
     }
 
@@ -171,7 +171,7 @@ $( document ).ready(function() {
                     '<p>Auteur: '+ value.volumeInfo.authors[0] +'</p>' +
                     '<p>Description: '+ getDescription(value.volumeInfo.description) +'</p>' +
                     '<i class="fas fa-bookmark"></i>' +
-                    '<img src="'+ getImage(value.volumeInfo.imageLinks)+'" alt="'+ value.volumeInfo.title+'">' +
+                    '<p class="center"><img src="'+ getImage(value.volumeInfo.imageLinks)+'" alt="'+ value.volumeInfo.title+'"></p>' +
                     '</div><hr>';
                 $("#results").append(block);
             });
