@@ -74,9 +74,28 @@ input {
     width: 150px;
     margin: 10px 25%;
 }
+#results-books {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
 
-@media (min-width: 768px) {
+
+@media (min-width: 767px) {
+    #searchBlock .btn {
+        width: 150px;
+        margin: 10px 0;
+    }
+    .book {
+        width: 45%;
+    }
     .book-bottom {
         flex-direction: row;
+    }
+}
+
+@media (min-width: 991px) {
+    .book {
+        width: 30%;
     }
 }

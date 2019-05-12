@@ -109,7 +109,7 @@ $( document ).ready(function() {
     function showResults(data)
     {
         $("#results").remove();
-        var resultBlock = '<div id="results"><h2>Résultats de recherche</h2></div>';
+        var resultBlock = '<div id="results"><h2>Résultats de recherche</h2><div id="results-books"></div></div>';
         $('hr').after(resultBlock);
         if(data.totalItems > 0) {
             $.each(data.items, function (index, value) {
@@ -129,12 +129,12 @@ $( document ).ready(function() {
                     '<p class="center"><img src="'+ getImage(value.volumeInfo.imageLinks)+'" alt="'+ value.volumeInfo.title+'"></p>' +
                     '</div>' +
                     '</div>';
-                $("#results").append(block);
+                $("#results-books").append(block);
             });
             addBookInMyList();
         }
         else {
-            $("#results").append('<p class="center">Aucun livre trouvé</p>');
+            $("#results-books").append('<p class="center">Aucun livre trouvé</p>');
         }
     }
     function addBookInMyList() {
