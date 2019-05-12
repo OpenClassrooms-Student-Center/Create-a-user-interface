@@ -113,7 +113,7 @@ $( document ).ready(function() {
         $('hr').after(resultBlock);
         if(data.totalItems > 0) {
             $.each(data.items, function (index, value) {
-                var block = '<div class="book">' +
+                var block = '<div class="book" id="'+ value.id+ '">' +
                     '<div class="book-top">' +
                     '<div class="book-top-left">' +
                     '<h3>Titre: '+ value.volumeInfo.title +'</h3>' +
@@ -139,11 +139,12 @@ $( document ).ready(function() {
     }
     function addBookInMyList() {
         $('.fa-bookmark').click(function(){
-            var parent = $(this).parent().html();
+            var id = $(this).closest('.book').attr('id');
+            var parent = $(this).closest('.book').html();
             $('#content').append('<div class="my-book">'+ parent + '</div>');
             replaceBookMark();
             removeBookInMyList();
-            addInSessionStorage();
+            addInSessionStorage(id, parent);
         });
     }
     function replaceBookMark(){
@@ -159,7 +160,8 @@ $( document ).ready(function() {
 
         //sessionStorage.removeItem();
     }
-    function addInSessionStorage() {
+    function addInSessionStorage(id, content) {
+        /*
         //Vider la session
         sessionStorage.clear();
         //Récupérer les éléments
@@ -169,13 +171,42 @@ $( document ).ready(function() {
             sessionStorage.setItem(index, $(value).html());
         });
         //sessionStorage.setItem('key', 'value');
+         */
+
+        //Récupérer identifiant et contenu
+        sessionStorage.setItem(id, content);
+        console.log(sessionStorage);
     }
     function getInSessionStorage() {
+
+        console.log(sessionStorage.length);
+        for (var i = 0; i < sessionStorage.length; i++) {
+            var id = sessionStorage.key(i);
+            var value = sessionStorage.getItem(id);
+            $("#content").append('<div class="my-book" id="'+ id +'">'+ value + '</div>');
+        }
+        replaceBookMark();
+        /*
+        $.each(sessionStorage, function(key, value){
+
+            // key magic
+            // value magic
+            console.log(key);
+            console.log(value);
+            $("#content").append('<div class="my-book" id="'+ key +'">'+ value + '</div>');
+
+        });
+
+         */
+
+        /*
         console.log(sessionStorage.getItem(0));
         console.log(sessionStorage.length);
         for(var i = 0; i < sessionStorage.length; i++) {
             $("#content").append('<div class="my-book">'+ sessionStorage[i] + '</div>');
         }
+
+         */
     }
     getInSessionStorage();
     removeBookInMyList();
