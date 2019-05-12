@@ -152,13 +152,14 @@ $( document ).ready(function() {
     }
     function removeBookInMyList() {
         $('.fa-trash-alt').click(function(){
-            var element = $(this).parent()
+            var element = $(this).closest('.my-book');
+            var id = $(this).closest('.my-book').attr('id');
+            console.log(element);
             $(element).fadeOut(800, function () {
                 $(element).remove();
             });
+            sessionStorage.removeItem(id);
         });
-
-        //sessionStorage.removeItem();
     }
     function addInSessionStorage(id, content) {
         /*
