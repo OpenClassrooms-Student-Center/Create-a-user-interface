@@ -47,8 +47,15 @@ input {
     margin: 20px 0;
     padding: 10px;
 }
+.book-top {
+    display: flex;
+    justify-content: space-between;
+}
 .id {
     font-style: italic;
+}
+.fa-bookmark {
+    color: #009688;
 }
 .my-book {
     background-color: aquamarine;

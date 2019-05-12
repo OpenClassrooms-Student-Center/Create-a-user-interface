@@ -1,6 +1,4 @@
 $( document ).ready(function() {
-    //$("#addBook").hide();
-    $("#searchBlock").hide();
     function handleResponse(response) {
         console.log(response);
         for (var i = 0; i < response.items.length; i++) {
@@ -166,13 +164,21 @@ $( document ).ready(function() {
             $.each(data.items, function (index, value) {
                 console.log(value);
                 var block = '<div class="book">' +
+                    '<div class="book-top">' +
+                    '<div class="book-top-left">' +
                     '<h3>Titre: '+ value.volumeInfo.title +'</h3>' +
                     '<p class="id">Id: '+ value.id +'</p>' +
                     '<p>Auteur: '+ value.volumeInfo.authors[0] +'</p>' +
-                    '<p>Description: '+ getDescription(value.volumeInfo.description) +'</p>' +
+                    '</div>' +
+                    '<div class="book-top-right">' +
                     '<i class="fas fa-bookmark"></i>' +
+                    '</div>' +
+                    '</div>' +
+                    '<div class="book-bottom">' +
+                    '<p>Description: '+ getDescription(value.volumeInfo.description) +'</p>' +
                     '<p class="center"><img src="'+ getImage(value.volumeInfo.imageLinks)+'" alt="'+ value.volumeInfo.title+'"></p>' +
-                    '</div><hr>';
+                    '</div>' +
+                    '</div>';
                 $("#results").append(block);
             });
             addBookInMyList();
