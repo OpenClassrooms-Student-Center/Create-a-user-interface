@@ -44,9 +44,20 @@ $( document ).ready(function() {
             e.preventDefault();
             console.log('formulaire soumis');
             //Récupérer les champs saisis dans le formulaire
+            var title = $("#title").val();
+            console.log(title);
+            var author = $("#author").val();
+            console.log(author);
             var search = $("#search").val();
             console.log(search);
-            var url = "https://www.googleapis.com/books/v1/volumes?q=1984+intitle:1984+inauthor:Orwell&filter=partial&langRestrict=fr&printType=books&projection=lite";
+
+            var titleWithPlus = title.replace(/\s/gi, "+");
+            console.log(titleWithPlus);
+
+            //var url = "https://www.googleapis.com/books/v1/volumes?q=1984+intitle:1984+inauthor:Orwell&filter=partial&langRestrict=fr&printType=books&projection=lite";
+            //var url = 'https://www.googleapis.com/books/v1/volumes?q="'+ titleWithPlus +'"+intitle:'+ titleWithPlus +'+inauthor:Orwell&filter=partial&langRestrict=fr&printType=books&projection=lite';
+            var url = 'https://www.googleapis.com/books/v1/volumes?q="la+ferme+des+animaux"+intitle:"la+ferme+des+animaux"+inauthor:Orwell'
+
             console.log(url);
             $.ajax({
                 type: "GET",
@@ -142,7 +153,7 @@ $( document ).ready(function() {
                 '<h3>Titre: '+ value.volumeInfo.title +'</h3>' +
                 '<p>Auteur: '+ value.volumeInfo.authors[0] +'</p>' +
                 '<i class="fas fa-bookmark"></i>' +
-                '<img src="'+ value.volumeInfo.imageLinks.smallThumbnail+'" alt="'+ value.volumeInfo.title+'">' +
+                '<img src="'+ getImage(value.volumeInfo.imageLinks)+'" alt="'+ value.volumeInfo.title+'">' +
             '</div><hr>';
             $("#results").append(block);
         });
