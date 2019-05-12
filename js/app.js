@@ -109,7 +109,7 @@ $( document ).ready(function() {
     function showResults(data)
     {
         $("#results").remove();
-        var resultBlock = '<div id="results"><h2>Résultats de la recherche</h2></div>';
+        var resultBlock = '<div id="results"><h2>Résultats de recherche</h2></div>';
         $('hr').after(resultBlock);
         if(data.totalItems > 0) {
             $.each(data.items, function (index, value) {
