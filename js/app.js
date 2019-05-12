@@ -151,7 +151,7 @@ $( document ).ready(function() {
     {
         $("#results").remove();
         var resultBlock = '<div id="results"><h2>Résultats de la recherche</h2></div>';
-        $('#searchBlock').after(resultBlock);
+        $('hr').after(resultBlock);
         $.each(data.items, function (index, value) {
             console.log(value);
             var block = '<div class="book" id="'+ value.id +'">' +

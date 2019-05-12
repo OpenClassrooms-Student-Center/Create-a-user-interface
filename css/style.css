@@ -13,7 +13,7 @@ h1{
     padding: 10px 30px;
     font-size: 20px;
 }
-.h2NewBook{
+h2{
     font-size: 18px;
     text-align: center;
 }
@@ -38,15 +38,10 @@ input {
 #cancel {
     background-color: #f44e42;
 }
-#results{
-    background-color: red;
-}
-#results h2 {
-    text-align: center;
-}
 .book {
-    background-color: aquamarine;
-    margin: 20px;
+    background-color: #e0e0e0;
+    border: solid 1px black;
+    margin: 20px 0;
     padding: 10px;
 }
 .my-book {
