@@ -41,7 +41,7 @@ input {
 .center {
     text-align: center;
 }
-.book {
+.book, .my-book {
     background-color: #e0e0e0;
     border: solid 1px black;
     margin: 20px 0;
@@ -62,10 +62,8 @@ input {
 .fa-bookmark {
     color: #009688;
 }
-.my-book {
-    background-color: aquamarine;
-    margin: 20px;
-    padding: 10px;
+.fa-trash-alt {
+    color: #ac0c00;
 }
 #addBookBlock {
     text-align: center;
