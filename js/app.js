@@ -22,11 +22,11 @@ $( document ).ready(function() {
     {
         $('#form').submit(function(e) {
             e.preventDefault();
-            var title = $("#title").val();
-            var author = $("#author").val();
-            var titleWithPlusAndQuotes = '"'+title.replace(/\s/gi, "+")+ '"';
-            var authorWithPlusAndQuotes = '"'+author.replace(/\s/gi, "+")+ '"';
-            var url = 'https://www.googleapis.com/books/v1/volumes?q='+titleWithPlusAndQuotes+'+'+authorWithPlusAndQuotes +'+intitle:'+ titleWithPlusAndQuotes +'+inauthor:'+ authorWithPlusAndQuotes +'&langRestrict=fr&printType=books&projection=lite';
+            const title = $("#title").val();
+            const author = $("#author").val();
+            const titleWithPlusAndQuotes = '"'+title.replace(/\s/gi, "+")+ '"';
+            const authorWithPlusAndQuotes = '"'+author.replace(/\s/gi, "+")+ '"';
+            const url = 'https://www.googleapis.com/books/v1/volumes?q='+titleWithPlusAndQuotes+'+'+authorWithPlusAndQuotes +'+intitle:'+ titleWithPlusAndQuotes +'+inauthor:'+ authorWithPlusAndQuotes +'&langRestrict=fr&printType=books&projection=lite';
 
             $.ajax({
                 type: "GET",
@@ -42,22 +42,9 @@ $( document ).ready(function() {
         });
     }
 
-    function deleteBook()
-    {
-        $(".fa-trash-alt").click(function(){
-            var confirmation = confirm("Êtes-vous certain de vouloir supprimer ce livre ?");
-            if(confirmation) {
-                var book = $(this).parent();
-                book.fadeOut(800, function() {
-                    book.remove();
-                });
-            }
-        });
-    }
-
     function addBookBlock()
     {
-        var block = '<div id="addBookBlock">' +
+        const block = '<div id="addBookBlock">' +
             '<button id="addBook" class="btn">Ajouter un livre</button>' +
             '</div>';
         $('.h2NewBook').after(block);
@@ -67,14 +54,14 @@ $( document ).ready(function() {
 
     function addCancelButton()
 	{
-		var cancel = '<button id="cancel" class="btn">Annuler</button>';
+		const cancel = '<button id="cancel" class="btn">Annuler</button>';
 		return cancel;
 	}
 
 	function addSearchBlock()
 	{
-		var cancel = addCancelButton();
-		var block = '<div id="searchBlock">' +
+		const cancel = addCancelButton();
+        const block = '<div id="searchBlock">' +
 			'<form id="form">' +
             '<label>Titre du livre</label><br>' +
             '<input type="text" name="title" id="title" class="input" required><br>' +
@@ -111,11 +98,11 @@ $( document ).ready(function() {
     function showResults(data)
     {
         $("#results").remove();
-        var resultBlock = '<div id="results"><h2>Résultats de recherche</h2><div id="results-books"></div></div>';
+        const resultBlock = '<div id="results"><h2>Résultats de recherche</h2><div id="results-books"></div></div>';
         $('hr').after(resultBlock);
         if(data.totalItems > 0) {
             $.each(data.items, function (index, value) {
-                var block = '<div class="book" id="'+ value.id+ '">' +
+                const block = '<div class="book" id="'+ value.id+ '">' +
                     '<div class="book-top">' +
                     '<div class="book-top-left">' +
                     '<h3>Titre: '+ value.volumeInfo.title +'</h3>' +
@@ -142,9 +129,9 @@ $( document ).ready(function() {
 
     function addBookInMyList() {
         $('.fa-bookmark').click(function(){
-            var id = $(this).closest('.book').attr('id');
-            var myBookId = $('.my-book').attr('id');
-            var value = 0;
+            const id = $(this).closest('.book').attr('id');
+            const myBookId = $('.my-book').attr('id');
+            let value = 0;
             $('.my-book').each(function () {
                 if(id === $(this).attr('id')) {
                     alert('Ce livre a déjà été ajouté à votre liste');
@@ -153,7 +140,7 @@ $( document ).ready(function() {
                 }
             });
             if(value == 0) {
-                var parent = $(this).closest('.book').html();
+                const parent = $(this).closest('.book').html();
                 $('#content').append('<div class="my-book" id="'+ id +'">'+ parent + '</div>');
                 replaceBookMark();
                 removeBookInMyList();
@@ -170,8 +157,8 @@ $( document ).ready(function() {
     function removeBookInMyList()
     {
         $('.fa-trash-alt').click(function(){
-            var element = $(this).closest('.my-book');
-            var id = $(this).closest('.my-book').attr('id');
+            const element = $(this).closest('.my-book');
+            const id = $(this).closest('.my-book').attr('id');
             $(element).fadeOut(800, function () {
                 $(element).remove();
             });
@@ -187,9 +174,9 @@ $( document ).ready(function() {
 
     function getInSessionStorage()
     {
-        for (var i = 0; i < sessionStorage.length; i++) {
-            var id = sessionStorage.key(i);
-            var value = sessionStorage.getItem(id);
+        for (let i = 0; i < sessionStorage.length; i++) {
+            let id = sessionStorage.key(i);
+            let value = sessionStorage.getItem(id);
             $("#content").append('<div class="my-book" id="'+ id +'">'+ value + '</div>');
         }
         replaceBookMark();
