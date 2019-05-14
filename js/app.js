@@ -9,7 +9,8 @@ $( document ).ready(function() {
         }
     }
 
-    function getDescription(description) {
+    function getDescription(description)
+    {
         if(description == undefined) {
             return 'Information manquante';
         } else {
@@ -40,7 +41,7 @@ $( document ).ready(function() {
             });
         });
     }
-    //search();
+
     function deleteBook()
     {
         $(".fa-trash-alt").click(function(){
@@ -53,7 +54,9 @@ $( document ).ready(function() {
             }
         });
     }
-    function addBookBlock(){
+
+    function addBookBlock()
+    {
         var block = '<div id="addBookBlock">' +
             '<button id="addBook" class="btn">Ajouter un livre</button>' +
             '</div>';
@@ -81,7 +84,6 @@ $( document ).ready(function() {
             '</form>' +
             cancel +
         '</div>';
-		//console.log(block);
 		$('#addBookBlock').remove();
 		$('.h2NewBook').after(block);
 		removeSearchBlock();
@@ -105,7 +107,7 @@ $( document ).ready(function() {
 			addSearchBlock();
         })
 	}
-    addBookBlock();
+
     function showResults(data)
     {
         $("#results").remove();
@@ -137,22 +139,19 @@ $( document ).ready(function() {
             $("#results-books").append('<p class="center">Aucun livre trouvé</p>');
         }
     }
+
     function addBookInMyList() {
         $('.fa-bookmark').click(function(){
             var id = $(this).closest('.book').attr('id');
-            console.log(id);
             var myBookId = $('.my-book').attr('id');
-            console.log(myBookId);
             var value = 0;
             $('.my-book').each(function () {
-                console.log($(this).attr('id'));
                 if(id === $(this).attr('id')) {
                     alert('Ce livre a déjà été ajouté à votre liste');
                     value = 1;
                     return false;
                 }
             });
-            console.log(value);
             if(value == 0) {
                 var parent = $(this).closest('.book').html();
                 $('#content').append('<div class="my-book" id="'+ id +'">'+ parent + '</div>');
@@ -162,28 +161,32 @@ $( document ).ready(function() {
             }
         });
     }
-    function replaceBookMark(){
+
+    function replaceBookMark()
+    {
         $('.my-book .fa-bookmark').replaceWith('<i class="fas fa-trash-alt"></i>');
     }
-    function removeBookInMyList() {
+
+    function removeBookInMyList()
+    {
         $('.fa-trash-alt').click(function(){
             var element = $(this).closest('.my-book');
             var id = $(this).closest('.my-book').attr('id');
-            console.log(element);
             $(element).fadeOut(800, function () {
                 $(element).remove();
             });
             sessionStorage.removeItem(id);
         });
     }
-    function addInSessionStorage(id, content) {
+
+    function addInSessionStorage(id, content)
+    {
         //Récupérer identifiant et contenu
         sessionStorage.setItem(id, content);
-        console.log(sessionStorage);
     }
-    function getInSessionStorage() {
 
-        console.log(sessionStorage.length);
+    function getInSessionStorage()
+    {
         for (var i = 0; i < sessionStorage.length; i++) {
             var id = sessionStorage.key(i);
             var value = sessionStorage.getItem(id);
@@ -191,6 +194,8 @@ $( document ).ready(function() {
         }
         replaceBookMark();
     }
+
+    addBookBlock();
     getInSessionStorage();
     removeBookInMyList();
 });
