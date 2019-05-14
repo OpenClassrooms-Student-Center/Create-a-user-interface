@@ -38,7 +38,7 @@ function addBookInMyList() {
         });
         if(value == 0) {
             const parent = $(this).closest('.book').html();
-            $('#content').append('<div class="my-book" id="'+ id +'">'+ parent + '</div>');
+            $('#content').append(`<div class="my-book" id="${id}">${parent}</div>`);
             replaceBookMark();
             removeBookInMyList();
             addInSessionStorage(id, parent);

@@ -14,22 +14,22 @@ function addBookBlock()
 
 function addCancelButton()
 {
-    return '<button id="cancel" class="btn">Annuler</button>';
+    return `<button id="cancel" class="btn">Annuler</button>`;
 }
 
 function addSearchBlock()
 {
     const cancel = addCancelButton();
-    const block = '<div id="searchBlock">' +
-        '<form id="form">' +
-        '<label>Titre du livre</label><br>' +
-        '<input type="text" name="title" id="title" class="input" required><br>' +
-        '<label>Auteur</label><br>' +
-        '<input type="text" name="author" id="author" class="author" required><br>' +
-        '<button class="btn">Rechercher</button>' +
-        '</form>' +
-        cancel +
-        '</div>';
+    const block = `<div id="searchBlock">
+        <form id="form">
+        <label>Titre du livre</label><br>
+        <input type="text" name="title" id="title" class="input" required><br>
+        <label>Auteur</label><br>
+        <input type="text" name="author" id="author" class="author" required><br>
+        <button class="btn">Rechercher</button>
+        </form>
+        ${cancel}
+        </div>`;
     $('#addBookBlock').remove();
     $('.h2NewBook').after(block);
     removeSearchBlock();

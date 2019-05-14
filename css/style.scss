@@ -1,0 +1,132 @@
+//Position
+$center : center;
+
+//Style
+$italic: italic;
+
+//Size
+$zero : 0;
+$onePixel : 1px;
+$fivePixels : 5px;
+$tenPixels : 10px;
+$eighteenPixels : 18px;
+$twentyPixels : 20px;
+$thirtyPixels : 30px;
+
+//Percent
+$twentyFivePercent : 25%;
+$thirtyPercent : 30%;
+$oneHundredPercent : 100%;
+
+//Color
+$black: black;
+$white: white;
+$red : #ac0c00;
+$green: #009688;
+
+//Other
+$auto : auto;
+$solid : solid;
+$none : none;
+
+body{
+    font-family: 'Merriweather', serif;
+}
+#myBooks {
+    margin: $auto;
+    padding: $twentyPixels;
+
+    .center {
+        text-align: $center;
+    }
+    h1{
+        text-align: $center;
+        background-color: #ebecf2;
+        border-radius: $fivePixels;
+        border: $none;
+        padding: $tenPixels $thirtyPixels;
+        font-size: $twentyPixels;
+    }
+    h2{
+        font-size: $eighteenPixels;
+        text-align: $center;
+    }
+    img{
+        width: 128px;
+    }
+    input {
+        width: $oneHundredPercent;
+        border: $solid $onePixel $black;
+        margin: $fivePixels $zero;
+        padding: $fivePixels;
+    }
+    .btn {
+        margin: $tenPixels $twentyPixels $tenPixels $zero;
+        padding: $tenPixels $thirtyPixels;
+        font-size: 16px;
+        background-color: $green;
+        color: $white;
+        border-radius: $fivePixels;
+        border: $none;
+    }
+    #searchBlock .btn {
+        width: 150px;
+        margin: $tenPixels $twentyFivePercent;
+    }
+    #cancel {
+        background-color: $red;
+    }
+    .book, .my-book {
+        background-color: #e0e0e0;
+        border: $solid $onePixel $black;
+        margin: $twentyPixels $zero;
+        padding: $tenPixels;
+    }
+    .book-top {
+        display: flex;
+        justify-content: space-between;
+    }
+    .book-bottom {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .id {
+        font-style: $italic;
+    }
+    .fa-bookmark {
+        color: $green;
+    }
+    .fa-trash-alt {
+        color: $red;
+    }
+    #addBookBlock {
+        text-align: $center;
+    }
+    #results-books {
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+    }
+}
+
+@media (min-width: 767px) {
+    #myBooks {
+        #searchBlock .btn {
+            width: 150px;
+            margin: $tenPixels $zero;
+        }
+        .book {
+            width: 45%;
+        }
+        .book-bottom {
+            flex-direction: row;
+        }
+    }
+}
+
+@media (min-width: 991px) {
+    .book {
+        width: $thirtyPercent;
+    }
+}

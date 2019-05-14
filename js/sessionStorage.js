@@ -11,7 +11,7 @@ function getInSessionStorage()
     for (let i = 0; i < sessionStorage.length; i++) {
         let id = sessionStorage.key(i);
         let value = sessionStorage.getItem(id);
-        $("#content").append('<div class="my-book" id="'+ id +'">'+ value + '</div>');
+        $("#content").append(`<div class="my-book" id="${id}"> ${value}</div>`);
     }
     replaceBookMark();
 }
