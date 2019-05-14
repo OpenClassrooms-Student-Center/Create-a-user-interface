@@ -177,18 +177,6 @@ $( document ).ready(function() {
         });
     }
     function addInSessionStorage(id, content) {
-        /*
-        //Vider la session
-        sessionStorage.clear();
-        //Récupérer les éléments
-        var children = $('#content').children();
-        //Enregistrer ceux-ci dans la session
-        $.each(children, function (index, value) {
-            sessionStorage.setItem(index, $(value).html());
-        });
-        //sessionStorage.setItem('key', 'value');
-         */
-
         //Récupérer identifiant et contenu
         sessionStorage.setItem(id, content);
         console.log(sessionStorage);
@@ -202,29 +190,7 @@ $( document ).ready(function() {
             $("#content").append('<div class="my-book" id="'+ id +'">'+ value + '</div>');
         }
         replaceBookMark();
-        /*
-        $.each(sessionStorage, function(key, value){
-
-            // key magic
-            // value magic
-            console.log(key);
-            console.log(value);
-            $("#content").append('<div class="my-book" id="'+ key +'">'+ value + '</div>');
-
-        });
-
-         */
-
-        /*
-        console.log(sessionStorage.getItem(0));
-        console.log(sessionStorage.length);
-        for(var i = 0; i < sessionStorage.length; i++) {
-            $("#content").append('<div class="my-book">'+ sessionStorage[i] + '</div>');
-        }
-
-         */
     }
     getInSessionStorage();
     removeBookInMyList();
-    //Supprimer le livre de la session pour ne pas qu'il s'affiche au rechargement de la page
 });
