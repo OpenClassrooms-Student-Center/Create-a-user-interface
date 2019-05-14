@@ -1,33 +1,5 @@
-//Position
-$center : center;
-
-//Style
-$italic: italic;
-
-//Size
-$zero : 0;
-$onePixel : 1px;
-$fivePixels : 5px;
-$tenPixels : 10px;
-$eighteenPixels : 18px;
-$twentyPixels : 20px;
-$thirtyPixels : 30px;
-
-//Percent
-$twentyFivePercent : 25%;
-$thirtyPercent : 30%;
-$oneHundredPercent : 100%;
-
-//Color
-$black: black;
-$white: white;
-$red : #ac0c00;
-$green: #009688;
-
-//Other
-$auto : auto;
-$solid : solid;
-$none : none;
+@import "variables";
+@import "mixins";
 
 body{
     font-family: 'Merriweather', serif;
@@ -83,13 +55,10 @@ body{
         padding: $tenPixels;
     }
     .book-top {
-        display: flex;
-        justify-content: space-between;
+        @include flex-container();
     }
     .book-bottom {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+        @include flex-container(column, space-between);
     }
     .id {
         font-style: $italic;
@@ -104,9 +73,7 @@ body{
         text-align: $center;
     }
     #results-books {
-        display: flex;
-        justify-content: space-between;
-        flex-wrap: wrap;
+        @include flex-container(row, space-between, wrap);
     }
 }
 
