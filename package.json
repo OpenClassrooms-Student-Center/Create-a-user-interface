@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/abdounikarim/oc-js.git"
+    "url": "git+https://github.com/OpenClassrooms-Student-Center/Create-a-user-interface.git"
   },
   "author": "Karim",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/abdounikarim/oc-js/issues"
+    "url": "https://github.com/OpenClassrooms-Student-Center/Create-a-user-interface/issues"
   },
-  "homepage": "https://github.com/abdounikarim/oc-js#readme",
+  "homepage": "https://github.com/OpenClassrooms-Student-Center/Create-a-user-interface#readme",
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
