@@ -1,0 +1,24 @@
+{
+  "name": "oc",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abdounikarim/oc-js.git"
+  },
+  "author": "Karim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abdounikarim/oc-js/issues"
+  },
+  "homepage": "https://github.com/abdounikarim/oc-js#readme",
+  "devDependencies": {
+    "webpack": "^4.31.0",
+    "webpack-cli": "^3.3.2"
+  }
+}
