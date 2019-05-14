@@ -4,18 +4,16 @@ $( document ).ready(function() {
         if(image == undefined) {
             image = 'images/unavailable.png';
             return image;
-        } else {
-            return image.smallThumbnail;
         }
+        return image.smallThumbnail;
     }
 
     function getDescription(description)
     {
         if(description == undefined) {
             return 'Information manquante';
-        } else {
-            return description.slice(0, 200) +'...';
         }
+        return description.slice(0, 200) +'...';
     }
 
     function search()
