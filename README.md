@@ -2,7 +2,7 @@
 
 This is an example of project realization
 
-##Instructions to install the project
+## Instructions to install the project
 
 Generate css files with SASS :
 ```
